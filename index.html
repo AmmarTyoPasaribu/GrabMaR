@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrabMaR - Kalkulator Pendapatan Driver Grab</title>
+    <meta name="description" content="Hitung total pendapatan harian sebagai driver Grab dengan mudah. Kalkulator uang digital dan cash.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        grab: {
+                            50: '#eefff4', 100: '#d7ffe7', 200: '#b2ffd1', 300: '#76ffad',
+                            400: '#33f581', 500: '#00dc5a', 600: '#00b848', 700: '#008f3b',
+                            800: '#067032', 900: '#085c2b', 950: '#003416',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-gray-950 text-white font-sans">
+
+    <!-- Background Glow Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="absolute -top-40 -left-40 w-80 h-80 bg-grab-500/20 rounded-full blur-[120px]"></div>
+        <div class="absolute top-1/2 -right-20 w-60 h-60 bg-grab-400/10 rounded-full blur-[100px]"></div>
+        <div class="absolute -bottom-20 left-1/3 w-72 h-72 bg-emerald-500/10 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-lg mx-auto px-4 py-6 pb-10">
+
+        <!-- Navbar -->
+        <nav class="navbar mb-6">
+            <a href="index.html" class="nav-brand">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-grab-400 to-grab-600 flex items-center justify-center">
+                    <svg class="w-4.5 h-4.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                    </svg>
+                </div>
+                <span class="text-lg font-bold"><span class="text-grab-400">Grab</span>MaR</span>
+            </a>
+            <div id="nav-auth" class="flex items-center gap-3"></div>
+        </nav>
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-2xl font-extrabold tracking-tight mb-1">
+                Hitung Pendapatan Harianmu
+            </h1>
+            <p class="text-gray-400 text-sm">Masukkan saldo digital & uang cash kamu</p>
+        </header>
+
+        <!-- Digital Money Section -->
+        <section class="card mb-5" id="digital-section">
+            <div class="flex items-center gap-2.5 mb-5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-white">Uang Digital</h2>
+                    <p class="text-xs text-gray-500">Saldo dompet online kamu</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="input-group">
+                    <label for="dompet-kredit" class="input-label">
+                        <span class="label-dot bg-green-400"></span>
+                        Dompet Kredit
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="number" id="dompet-kredit" class="input-field" placeholder="0" min="0" data-digital>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="dompet-tunai" class="input-label">
+                        <span class="label-dot bg-blue-400"></span>
+                        Dompet Tunai
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="number" id="dompet-tunai" class="input-field" placeholder="0" min="0" data-digital>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="ovo-cash" class="input-label">
+                        <span class="label-dot bg-purple-400"></span>
+                        OVO Cash
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="number" id="ovo-cash" class="input-field" placeholder="0" min="0" data-digital>
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-bar mt-5">
+                <span class="text-sm font-medium text-gray-300">Total Digital</span>
+                <span class="text-lg font-bold text-blue-400" id="total-digital">Rp 0</span>
+            </div>
+        </section>
+
+        <!-- Cash Money Section -->
+        <section class="card mb-5" id="cash-section">
+            <div class="flex items-center gap-2.5 mb-5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-white">Uang Cash</h2>
+                    <p class="text-xs text-gray-500">Jumlah lembar per nominal</p>
+                </div>
+            </div>
+
+            <div class="space-y-2.5">
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-red-500/15 text-red-400">100rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 100.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="100000" id="cash-100000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-100000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-blue-500/15 text-blue-400">50rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 50.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="50000" id="cash-50000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-50000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-green-500/15 text-green-400">20rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 20.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="20000" id="cash-20000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-20000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-purple-500/15 text-purple-400">10rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 10.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="10000" id="cash-10000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-10000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-teal-500/15 text-teal-400">5rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 5.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="5000" id="cash-5000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-5000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-yellow-500/15 text-yellow-400">2rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 2.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="2000" id="cash-2000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-2000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="cash-row">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-gray-500/15 text-gray-400">1rb</span>
+                        <span class="text-xs text-gray-500 hidden sm:inline">Rp 1.000</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-600 text-xs">×</span>
+                        <input type="number" class="cash-input" placeholder="0" min="0" data-cash data-nominal="1000" id="cash-1000">
+                        <span class="cash-subtotal text-xs text-gray-500" id="sub-1000">= Rp 0</span>
+                    </div>
+                </div>
+
+                <!-- Manual Cash -->
+                <div class="cash-row" style="border: 1px dashed rgba(255,255,255,0.08); margin-top: 0.25rem;">
+                    <div class="cash-nominal">
+                        <span class="nominal-badge bg-cyan-500/15 text-cyan-400">Manual</span>
+                    </div>
+                    <div class="cash-input-area">
+                        <span class="text-gray-500 text-xs font-semibold">Rp</span>
+                        <input type="number" class="input-field" style="width:120px; padding:0.5rem; font-size:0.9rem; text-align:right;" placeholder="0" min="0" id="cash-manual">
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-bar mt-5">
+                <span class="text-sm font-medium text-gray-300">Total Cash</span>
+                <span class="text-lg font-bold text-amber-400" id="total-cash">Rp 0</span>
+            </div>
+        </section>
+
+        <!-- Calculate Button -->
+        <button id="btn-calculate" class="w-full py-4 rounded-2xl bg-gradient-to-r from-grab-500 to-grab-600 hover:from-grab-400 hover:to-grab-500 text-white font-bold text-base tracking-wide shadow-lg shadow-grab-500/25 transition-all duration-300 active:scale-[0.98] mb-5">
+            💰 Kalkulasi Total
+        </button>
+
+        <!-- Result Table -->
+        <section id="result-section" class="card hidden animate-slide-up mb-5">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-grab-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/>
+                </svg>
+                Ringkasan Pendapatan
+            </h2>
+            <div class="overflow-hidden rounded-xl border border-gray-700/50">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-gray-800/80">
+                            <th class="text-left py-3 px-4 text-gray-400 font-semibold">Kategori</th>
+                            <th class="text-right py-3 px-4 text-gray-400 font-semibold">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-700/40">
+                            <td class="py-3.5 px-4 text-gray-300 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                                Total Digital
+                            </td>
+                            <td class="py-3.5 px-4 text-right font-semibold text-blue-400" id="result-digital">Rp 0</td>
+                        </tr>
+                        <tr class="border-t border-gray-700/40">
+                            <td class="py-3.5 px-4 text-gray-300 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                Total Cash
+                            </td>
+                            <td class="py-3.5 px-4 text-right font-semibold text-amber-400" id="result-cash">Rp 0</td>
+                        </tr>
+                        <tr class="border-t-2 border-grab-500/40 bg-grab-500/5">
+                            <td class="py-4 px-4 text-white font-bold flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-grab-400"></span>
+                                Total Keseluruhan
+                            </td>
+                            <td class="py-4 px-4 text-right font-extrabold text-xl text-grab-400" id="result-total">Rp 0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Save Button (only visible when logged in & calculated) -->
+        <button id="btn-save" class="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-400 hover:to-blue-500 text-white font-bold text-base tracking-wide shadow-lg shadow-indigo-500/25 transition-all duration-300 active:scale-[0.98] mb-5 hidden">
+            💾 Simpan Pendapatan
+        </button>
+
+        <!-- Save Alert -->
+        <div id="save-alert" class="hidden mb-5 p-3 rounded-xl text-sm font-medium"></div>
+
+        <!-- Footer -->
+        <footer class="mt-10 text-center text-xs text-gray-600">
+            <p>GrabMaR &copy; 2026 &mdash; Kalkulator Driver Grab</p>
+        </footer>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

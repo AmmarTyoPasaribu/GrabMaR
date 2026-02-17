@@ -1,0 +1,444 @@
+/* =============================================
+   GrabMaR - Custom Styles
+   ============================================= */
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =============================================
+   Navbar
+   ============================================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+    backdrop-filter: blur(20px);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-login-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #00dc5a, #00b848);
+    border-radius: 0.625rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0, 220, 90, 0.2);
+}
+
+.nav-login-btn:hover {
+    box-shadow: 0 4px 20px rgba(0, 220, 90, 0.3);
+    transform: translateY(-1px);
+}
+
+.nav-history-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.45rem 0.875rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(79, 70, 229, 0.9));
+    border-radius: 0.625rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+}
+
+.nav-history-btn:hover {
+    box-shadow: 0 4px 18px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+}
+
+/* User Greeting (below navbar) */
+.user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.25rem;
+    margin-top: 0.375rem;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.nav-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-logout:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* =============================================
+   Card
+   ============================================= */
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(0, 220, 90, 0.03);
+}
+
+/* =============================================
+   Input Group
+   ============================================= */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.input-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.label-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.875rem;
+    padding: 0 1rem;
+    transition: all 0.25s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: rgba(96, 165, 250, 0.5);
+    background: rgba(96, 165, 250, 0.05);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.08);
+}
+
+.input-prefix {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-right: 0.5rem;
+    user-select: none;
+}
+
+.input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f3f4f6;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.input-field::placeholder {
+    color: #374151;
+}
+
+/* =============================================
+   Total Bar
+   ============================================= */
+.total-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.875rem;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+/* =============================================
+   Cash Row
+   ============================================= */
+.cash-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.cash-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.cash-nominal {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-width: 100px;
+}
+
+.nominal-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.cash-input-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cash-input {
+    width: 56px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.625rem;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    color: #f3f4f6;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.cash-input:focus {
+    border-color: rgba(251, 191, 36, 0.5);
+    background: rgba(251, 191, 36, 0.05);
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.08);
+}
+
+.cash-subtotal {
+    min-width: 90px;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s ease;
+}
+
+.cash-subtotal.has-value {
+    color: #fbbf24 !important;
+    font-weight: 600;
+}
+
+/* =============================================
+   Detail Row (Modal)
+   ============================================= */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.375rem 0;
+    font-size: 0.8rem;
+}
+
+.detail-row span:first-child {
+    color: #9ca3af;
+}
+
+.detail-row span:last-child {
+    color: #e5e7eb;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =============================================
+   Modal
+   ============================================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+/* =============================================
+   Animations
+   ============================================= */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes subtlePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 220, 90, 0); }
+    50% { box-shadow: 0 0 30px rgba(0, 220, 90, 0.06); }
+}
+
+#result-section:not(.hidden) {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, subtlePulse 3s ease-in-out infinite 0.4s;
+}
+
+/* Spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.animate-spin {
+    animation: spin 0.8s linear infinite;
+}
+
+/* =============================================
+   History (desktop table / mobile cards)
+   ============================================= */
+.history-desktop {
+    display: block;
+}
+.history-mobile {
+    display: none;
+}
+
+.history-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+    padding: 1rem 1.125rem;
+    backdrop-filter: blur(20px);
+    transition: border-color 0.2s ease;
+}
+
+.history-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 639px) {
+    .history-desktop {
+        display: none !important;
+    }
+    .history-mobile {
+        display: block !important;
+    }
+}
+
+/* =============================================
+   Mobile
+   ============================================= */
+@media (max-width: 400px) {
+    .card {
+        padding: 1.125rem;
+        border-radius: 1rem;
+    }
+
+    .cash-nominal {
+        min-width: 70px;
+    }
+
+    .cash-subtotal {
+        min-width: 75px;
+        font-size: 0.7rem;
+    }
+
+    .cash-input {
+        width: 48px;
+        padding: 0.4rem;
+    }
+
+    .nominal-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .navbar {
+        padding: 0.625rem 0.75rem;
+    }
+}
+
+/* =============================================
+   Scrollbar
+   ============================================= */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}

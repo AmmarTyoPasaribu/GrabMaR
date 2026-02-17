@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/api/register.php", "destination": "/api/register" },
+    { "source": "/api/login.php", "destination": "/api/login" },
+    { "source": "/api/save-earning.php", "destination": "/api/save-earning" },
+    { "source": "/api/earnings.php", "destination": "/api/earnings" },
+    { "source": "/api/earning-detail.php", "destination": "/api/earning-detail" },
+    { "source": "/api/delete-earning.php", "destination": "/api/delete-earning" }
+  ]
+}
