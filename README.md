@@ -23,4 +23,3 @@ Aplikasi kalkulator pendapatan harian untuk driver Grab. Hitung uang digital & c
 | Auth | JWT (custom, pure JS) |
 | Hosting | Vercel |
 
-
