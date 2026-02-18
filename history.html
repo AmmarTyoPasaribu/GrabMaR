@@ -90,6 +90,7 @@
                                 <th class="text-right py-3 px-4 text-gray-400 font-semibold text-xs">Digital</th>
                                 <th class="text-right py-3 px-4 text-gray-400 font-semibold text-xs">Cash</th>
                                 <th class="text-right py-3 px-4 text-gray-400 font-semibold text-xs">Total</th>
+                                <th class="text-center py-3 px-4 text-gray-400 font-semibold text-xs">Tren</th>
                                 <th class="text-center py-3 px-4 text-gray-400 font-semibold text-xs">Aksi</th>
                             </tr>
                         </thead>
@@ -200,6 +201,19 @@
             }
         }
 
+        function getTrendHtml(diff, compact) {
+            if (diff === null) return `<span class="text-gray-600 text-xs">—</span>`;
+            const isUp = diff > 0;
+            const color = isUp ? 'text-emerald-400' : 'text-red-400';
+            const bgColor = isUp ? 'bg-emerald-500/10' : 'bg-red-500/10';
+            const arrow = isUp ? '▲' : '▼';
+            const sign = isUp ? '+' : '';
+            if (compact) {
+                return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full ${bgColor} ${color} text-[0.65rem] font-semibold">${arrow} ${sign}${formatRupiah(diff)}</span>`;
+            }
+            return `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full ${bgColor} ${color} text-xs font-semibold whitespace-nowrap">${arrow} ${sign}${formatRupiah(diff)}</span>`;
+        }
+
         function renderHistory() {
             const sorted = [...historyData].sort((a, b) => {
                 const da = new Date(a.created_at), db = new Date(b.created_at);
@@ -215,6 +229,7 @@
                     <td class="py-3 px-4 text-right text-blue-400 font-medium text-xs">${formatRupiah(item.total_digital)}</td>
                     <td class="py-3 px-4 text-right text-amber-400 font-medium text-xs">${formatRupiah(item.total_cash)}</td>
                     <td class="py-3 px-4 text-right text-grab-400 font-bold text-xs">${formatRupiah(item.total_all)}</td>
+                    <td class="py-3 px-4 text-center">${getTrendHtml(i < sorted.length - 1 ? item.total_all - sorted[i + 1].total_all : null, false)}</td>
                     <td class="py-3 px-4 text-center">
                         <div class="flex items-center justify-center gap-1.5">
                             <button onclick="showDetail(${item.id})" class="px-3 py-1.5 rounded-lg bg-grab-500/10 text-grab-400 text-xs font-semibold hover:bg-grab-500/20 transition-colors">
@@ -249,6 +264,9 @@
                             <div class="text-[0.65rem] text-gray-500 mb-0.5">Total</div>
                             <div class="text-xs font-bold text-grab-400">${formatRupiah(item.total_all)}</div>
                         </div>
+                    </div>
+                    <div class="text-center mb-2">
+                        ${getTrendHtml(i < sorted.length - 1 ? item.total_all - sorted[i + 1].total_all : null, true)}
                     </div>
                     <div class="flex gap-2">
                         <button onclick="showDetail(${item.id})" class="flex-1 py-2 rounded-lg bg-grab-500/10 text-grab-400 text-xs font-semibold hover:bg-grab-500/20 transition-colors">
